@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Spring Security Example </title>
+
+<style>
+.center{
+        margin-top:100px;
+        }
+
+        .centerB{
+        text-decoration: none;
+        font-size: 18px;
+        }
+        .mrg{
+       margin:20px;
+        }
+        .mrgl{
+    margin-left: 30px;
+        }
+</style>
+
+</head>
+<body>
+<div align="center">
+    <form action="/login" method="post" class="centerB">
+        <div class="mrg"><label> User Name : <input type="text" name="username" class="mrgl"/> </label></div>
+        <div class="mrg"><label> Password: <input type="password" name="password" class="mrgl"/> </label></div>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <div class="mrg"><input type="submit" value="Sign In"/></div>
+    </form>
+</div>
+</body>
+</html>

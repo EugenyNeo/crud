@@ -1,0 +1,65 @@
+<html>
+<style>
+    .marg{padding:10px;}
+</style>
+
+<body>
+
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Sign Out"/>
+
+    </form>
+</div>
+
+<div>
+<h2>Main List</h2>
+</div>
+
+
+
+<h3>Add new User </a></h3>
+
+
+<div>
+    <form method="post">
+            <i class="marg">Person ID: </i>    <input type="text" name="personId" placeholder="Enter the inn (10 numbers only)"/>
+            <br><i class="marg">First Name: </i>   <input type="text" name="firstName" placeholder="Enter a firstName"/>
+            <br><i class="marg">Last Name: </i>    <input type="text" name="lastName" placeholder="Enter a lastName"/>
+            <br><i class="marg">Date of birth: </i><input type="text" name="dateOfBirth" placeholder="Enter a dateOfBirth"/>
+            <br><i class="marg">Family Status: </i><input type="text" name="familyStatus" placeholder="Enter a familyStatus"/>
+            <br><i class="marg">Education: </i>    <input type="text" name="education" placeholder="Enter a education"/>
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+            <br><button  type="submit" value="Add">Add User</button>
+
+    </form>
+</div>
+
+<div><h3>Fiter of Users by person </h3></div>
+
+       <form method="post" action="filter">
+            <input type="text" name="filter">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+            <button type="submit" >Search by inn </button>
+       </form>
+
+
+<div><h3>The Users List</h3></div>
+
+        {{#users}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{personId}}</span>&nbsp;
+            <span>{{firstName}}</span>&nbsp;
+            <span>{{lastName}}</span>&nbsp;
+            <span>{{dateOfBirth}}</span>&nbsp;
+            <span>{{familyStatus}}</span>&nbsp;
+            <span>{{education}}</span>
+            <span><a href="" >edit</a></span>
+            <span><a href="" >delete</a></span>
+        </div>
+        {{/users}}
+
+</body>
+</html>
