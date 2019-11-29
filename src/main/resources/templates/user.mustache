@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>User Details</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+
+   {{>navbar}}
+
+<h1>View User</h1>
+<a href="/users">Back to User List</a>
+<br/><br/>
+        {{#user}}
+<table border="0">
+<tr>
+<td>ID</td>
+<td>:</td>
+<td>{{user.id}}</td>
+</tr>
+<tr>
+
+<td>INN</td>
+<td>:</td>
+<td>{{user.personId}}</td>
+</tr>
+
+<td>First Name</td>
+<td>:</td>
+<td>{{user.firstName}}</td>
+</tr>
+
+<td>Last Name</td>
+<td>:</td>
+<td>{{user.lastName}}</td>
+</tr>
+
+
+<tr>
+<td>Date of birth</td>
+<td>:</td>
+<td>{{user.dateOfBirth}}</td>
+</tr>
+
+<tr>
+<td>Family Status</td>
+<td>:</td>
+<td>{{user.familyStatus}}</td>
+</tr>
+
+
+<tr>
+<td>Education</td>
+<td>:</td>
+<td>{{user.education}}</td>
+</tr>
+</table>
+
+<br/><br/>
+        {{#allowDelete}}
+<form action="/users/{{user.id}}/delete" method="POST">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        Delete this user? <input type="submit" value="Yes"/>
+</form>
+        {{/allowDelete}}
+        {{^allowDelete}}
+<div>
+<a href="/users/{{user.id}}/edit">Edit</a> |
+<a href="/users/{{user.id}}/delete">Delete</a>
+</div>
+        {{/allowDelete}}
+        {{/user}}
+        {{#errorMessage}}
+<div class="error">{{errorMessage}}</div>
+        {{/errorMessage}}
+        {{>footer}}
+</body>
+</html>

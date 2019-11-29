@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>{{#add}}Create new User{{/add}}{{^add}}Edit User{{/add}}</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+
+{{#navbar}}{{/navbar}}
+
+
+<h1>{{#add}}Create new User:{{/add}}{{^add}}Edit User:{{/add}}</h1>
+<a href="/users">Back to User List</a>
+<br/><br/>
+<form action="{{#add}}/users/add{{/add}}{{^add}}/users/{{user.id}}/edit{{/add}}" name="user" method="POST">
+<table border="0">
+        {{#user.id}}
+<tr>
+<td>ID</td>
+<td>:</td>
+<td>{{user.id}}</td>
+</tr>
+        {{/user.id}}
+<tr>
+
+
+<td>INN</td>
+<td>:</td>
+<td><input type="text" name="personId" value="{{#user.personId}}{{user.personId}}{{/user.personId}}" /></td>
+</tr>
+
+<td>First Name</td>
+<td>:</td>
+<td><input type="text" name="firstName" value="{{#user.firstName}}{{user.firstName}}{{/user.firstName}}" /></td>
+</tr>
+
+<tr>
+<td>Last Name</td>
+<td>:</td>
+<td><input type="text" name="lastName" value="{{#user.lastName}}{{user.lastName}}{{/user.lastName}}" /></td>
+</tr>
+
+<tr>
+<td>Date Of Birth</td>
+<td>:</td>
+<td><input type="text" name="dateOfBirth" value="{{#user.dateOfBirth}}{{user.dateOfBirth}}{{/user.dateOfBirth}}" /></td>
+</tr>
+
+<tr>
+<td>Family Status</td>
+<td>:</td>
+<td><input type="text" name="familyStatus" value="{{#user.familyStatus}}{{user.familyStatus}}{{/user.familyStatus}}" /></td>
+</tr>
+
+<td>Education</td>
+<td>:</td>
+<td><input type="text" name="education" value="{{#user.education}}{{user.education}}{{/user.education}}" /></td>
+</tr>
+
+</table>
+<input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+<button type="submit" value="" >{{#add}}Create{{/add}}{{^add}}Update{{/add}}</button>
+</form>
+
+<br/>
+<!-- Check if errorMessage is not null and not empty
+<div class="error">{{#errorMessage}}{{errorMessage}}{{/errorMessage}}</div>
+        {{>footer}}
+</body>
+</html>

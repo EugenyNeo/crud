@@ -1,20 +1,29 @@
 package com.company.crud.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 63453822723859663L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
+    @NotNull
     private String personId;
 
+    @NotNull
     private String firstName;
 
+    @NotNull
     private String lastName;
 
+    @NotNull
     private String dateOfBirth;
 
     private String familyStatus;
@@ -34,11 +43,11 @@ public class User {
         this.education = education;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -89,6 +98,27 @@ public class User {
     public void setEducation(String education) {
         this.education = education;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(personId, user.personId) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(dateOfBirth, user.dateOfBirth) &&
+                Objects.equals(familyStatus, user.familyStatus) &&
+                Objects.equals(education, user.education);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, personId, firstName, lastName, dateOfBirth, familyStatus, education);
+    }
+
 
     @Override
     public String toString() {

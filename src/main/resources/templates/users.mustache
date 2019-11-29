@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html >
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+<style>
+table {
+        border-collapse: collapse;
+        }
+
+        table, td, th {
+        border: 1px solid #999;
+        padding: 5px;
+        }
+        .marg{padding:10px;}
+        form span{padding:5px;}
+</style>
+</head>
+<body>
+{{>navbar}}
+
+<div class="container-fluid">
+     <div></div>
+
+</div>
+<h1>Users List</h1>
+
+<nobr>
+<a href="/users/add">Add User</a> |
+<a href="/">Back to Index</a>
+</nobr>
+</div>
+<br/><br/>
+
+
+<div>
+    <table>
+        <tr>
+        <th> N%</th>&nbsp;
+        <th> INN</th>&nbsp;
+        <th>First Name</th>&nbsp;
+        <th>Last Name</th>&nbsp;
+        <th>Date of Birth</th>&nbsp;
+        <th>Family status</th>&nbsp;
+        <th>Education</th>&nbsp;
+        <th>Edit</th>&nbsp;
+        <th>Delete</th>&nbsp;
+        </tr>
+
+                {{#users}}
+        <tr>
+        <td><b>{{id}}</b></td>&nbsp;
+        <td><a href="/users/{{id}}">{{personId}}</a></td>&nbsp;
+        <td><a href="/users/{{id}}">{{firstName}}</a></td>&nbsp;
+        <td><a href="/users/{{id}}">{{lastName}}</a></td>&nbsp;
+        <td>{{dateOfBirth}}</td>&nbsp;
+        <td>{{familyStatus}}</td>&nbsp;
+        <td>{{education}}</td>&nbsp;
+        <td><a href="/users/{{id}}/edit">edit</a></td>&nbsp;
+        <td><a href="/users/{{id}}/delete" action="">delete</a></td>&nbsp;
+        </tr>
+                {{/users}}
+                </table>
+</div>
+
+
+<h3>Fiter of Users by person </h3>
+
+<form method="post" action="filter">
+<input type="text" name="filter">
+<input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+<button type="submit" >Search Users by INN </button>
+<button type="submit" >Show the Full List of Users </button>
+</form>
+
+
+<br/><br/>
+<div>
+<nobr>
+        {{#hasPrev}}<a href="/users?page={{prev}}">Prev</a>&nbsp;&nbsp;&nbsp;{{/hasPrev}}
+        {{#hasNext}}<a href="/users?page={{next}}">Next</a>{{/hasNext}}
+</nobr>
+</div>
+
+
+<a href="/">Back to index</a>
+
+
+</div>
+        {{>footer}}
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+</body>
+</html>

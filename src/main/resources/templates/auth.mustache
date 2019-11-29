@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html >
+
+<head>
+<meta charset="UTF-8" />
+<title>{{title}}</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+<style>
+.main{width:350px; height: 250px; margin:0 auto;border: 1px solid grey;margin-top:10%;}
+.inside{  width:180px; height:110px;
+          text-decoration: none;
+          padding: 50px 10px 20px 10px;
+          margin: 0 auto;
+          text-align:center;}
+
+.inside a{color:orange;}
+.logout{margin:0 auto; margi-top:50px;top:100px;}
+.input_logout{ width:350px; height:30px;background-color:orange;border:none;}
+
+</style>
+
+</head>
+<body>
+
+
+<div class="main">
+        <div>
+                <form action="/logout" method="post" class="logout">
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <input type="submit" value="Sign Out" class="input_logout"/>
+                </form>
+        </div>
+        <div class="inside">
+                <h3>Hello, User</h3>
+                <a href="/users">Show the Users List or Add a new User</a>
+        </div>
+
+</div>
+
+</body>
+</html>
