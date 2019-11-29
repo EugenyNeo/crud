@@ -8,7 +8,7 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
 
 <style>
 table {
@@ -21,76 +21,82 @@ table {
         }
         .marg{padding:10px;}
         form span{padding:5px;}
+        .view-container{width:800px; margin:0 auto;margin-top:50px;}
+        .container{width:90%; margin:0 auto;padding:50px; 0px 0px 200px;}
+        .filter{margin-top:50px;}
 </style>
 </head>
 <body>
 {{>navbar}}
 
-<div class="container-fluid">
-     <div></div>
-
-</div>
-<h1>Users List</h1>
-
-<nobr>
-<a href="/users/add">Add User</a> |
-<a href="/">Back to Index</a>
-</nobr>
-</div>
-<br/><br/>
+<div class="view-container">
+     <div class="row">
+          <div class="container">
+            <h1>Users List</h1>
+                <section>
+                <a href="/users/add">Add User</a> |
+                <a href="/">Back to Index</a>
+                </section>
+            </div>
+            <br/><br/>
 
 
-<div>
-    <table>
-        <tr>
-        <th> N%</th>&nbsp;
-        <th> INN</th>&nbsp;
-        <th>First Name</th>&nbsp;
-        <th>Last Name</th>&nbsp;
-        <th>Date of Birth</th>&nbsp;
-        <th>Family status</th>&nbsp;
-        <th>Education</th>&nbsp;
-        <th>Edit</th>&nbsp;
-        <th>Delete</th>&nbsp;
-        </tr>
+            <div>
+                <table>
+                    <tr>
+                    <th> N%</th>&nbsp;
+                    <th> INN</th>&nbsp;
+                    <th>First Name</th>&nbsp;
+                    <th>Last Name</th>&nbsp;
+                    <th>Date of Birth</th>&nbsp;
+                    <th>Family status</th>&nbsp;
+                    <th>Education</th>&nbsp;
+                    <th>Edit</th>&nbsp;
+                    <th>Delete</th>&nbsp;
+                    </tr>
 
-                {{#users}}
-        <tr>
-        <td><b>{{id}}</b></td>&nbsp;
-        <td><a href="/users/{{id}}">{{personId}}</a></td>&nbsp;
-        <td><a href="/users/{{id}}">{{firstName}}</a></td>&nbsp;
-        <td><a href="/users/{{id}}">{{lastName}}</a></td>&nbsp;
-        <td>{{dateOfBirth}}</td>&nbsp;
-        <td>{{familyStatus}}</td>&nbsp;
-        <td>{{education}}</td>&nbsp;
-        <td><a href="/users/{{id}}/edit">edit</a></td>&nbsp;
-        <td><a href="/users/{{id}}/delete" action="">delete</a></td>&nbsp;
-        </tr>
-                {{/users}}
-                </table>
-</div>
+                            {{#users}}
+                    <tr>
+                    <td><b>{{id}}</b></td>&nbsp;
+                    <td><a href="/users/{{id}}">{{personId}}</a></td>&nbsp;
+                    <td><a href="/users/{{id}}">{{firstName}}</a></td>&nbsp;
+                    <td><a href="/users/{{id}}">{{lastName}}</a></td>&nbsp;
+                    <td>{{dateOfBirth}}</td>&nbsp;
+                    <td>{{familyStatus}}</td>&nbsp;
+                    <td>{{education}}</td>&nbsp;
+                    <td><a href="/users/{{id}}/edit">edit</a></td>&nbsp;
+                    <td><a href="/users/{{id}}/delete" action="">delete</a></td>&nbsp;
+                    </tr>
+                            {{/users}}
+                            </table>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="filter">
+                <h3>Fiter of Users by person </h3>
+
+                <form method="post" action="filter">
+                <input type="text" name="filter">
+                <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                <button type="submit" >Search Users by INN </button>
+                <button type="submit" >Show the Full List of Users </button>
+                </form>
+            </div>
+        </div>
+
+            <br/><br/>
+            <div>
+            <nobr>
+                    {{#hasPrev}}<a href="/users?page={{prev}}">Prev</a>&nbsp;&nbsp;&nbsp;{{/hasPrev}}
+                    {{#hasNext}}<a href="/users?page={{next}}">Next</a>{{/hasNext}}
+            </nobr>
+            </div>
 
 
-<h3>Fiter of Users by person </h3>
-
-<form method="post" action="filter">
-<input type="text" name="filter">
-<input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-<button type="submit" >Search Users by INN </button>
-<button type="submit" >Show the Full List of Users </button>
-</form>
-
-
-<br/><br/>
-<div>
-<nobr>
-        {{#hasPrev}}<a href="/users?page={{prev}}">Prev</a>&nbsp;&nbsp;&nbsp;{{/hasPrev}}
-        {{#hasNext}}<a href="/users?page={{next}}">Next</a>{{/hasNext}}
-</nobr>
-</div>
-
-
-<a href="/">Back to index</a>
+            <a href="/">Back to index</a>
 
 
 </div>

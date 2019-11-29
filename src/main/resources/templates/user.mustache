@@ -1,79 +1,98 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8">
 <title>User Details</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+<style>
+ .container{width:90%; margin:0 auto;}
+ .wrap{margin-left:20%;padding:50px 0px 0px 100px;}
+</style>
+
 </head>
 <body>
+{{>navbar}}
+                <div class="container">
+                        <div class="wrap">
 
-   {{>navbar}}
+                        <h1>View User</h1>
+                        <a href="/users">Back to User List</a>
+                        <br/><br/>
+                                {{#user}}
+                        <table border="0">
+                        <tr>
+                        <td>ID</td>
+                        <td>:</td>
+                        <td>{{user.id}}</td>
+                        </tr>
+                        <tr>
 
-<h1>View User</h1>
-<a href="/users">Back to User List</a>
-<br/><br/>
-        {{#user}}
-<table border="0">
-<tr>
-<td>ID</td>
-<td>:</td>
-<td>{{user.id}}</td>
-</tr>
-<tr>
+                        <td>INN</td>
+                        <td>:</td>
+                        <td>{{user.personId}}</td>
+                        </tr>
 
-<td>INN</td>
-<td>:</td>
-<td>{{user.personId}}</td>
-</tr>
+                        <td>First Name</td>
+                        <td>:</td>
+                        <td>{{user.firstName}}</td>
+                        </tr>
 
-<td>First Name</td>
-<td>:</td>
-<td>{{user.firstName}}</td>
-</tr>
-
-<td>Last Name</td>
-<td>:</td>
-<td>{{user.lastName}}</td>
-</tr>
-
-
-<tr>
-<td>Date of birth</td>
-<td>:</td>
-<td>{{user.dateOfBirth}}</td>
-</tr>
-
-<tr>
-<td>Family Status</td>
-<td>:</td>
-<td>{{user.familyStatus}}</td>
-</tr>
+                        <td>Last Name</td>
+                        <td>:</td>
+                        <td>{{user.lastName}}</td>
+                        </tr>
 
 
-<tr>
-<td>Education</td>
-<td>:</td>
-<td>{{user.education}}</td>
-</tr>
-</table>
+                        <tr>
+                        <td>Date of birth</td>
+                        <td>:</td>
+                        <td>{{user.dateOfBirth}}</td>
+                        </tr>
 
-<br/><br/>
-        {{#allowDelete}}
-<form action="/users/{{user.id}}/delete" method="POST">
-        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-        Delete this user? <input type="submit" value="Yes"/>
-</form>
-        {{/allowDelete}}
-        {{^allowDelete}}
-<div>
-<a href="/users/{{user.id}}/edit">Edit</a> |
-<a href="/users/{{user.id}}/delete">Delete</a>
+                        <tr>
+                        <td>Family Status</td>
+                        <td>:</td>
+                        <td>{{user.familyStatus}}</td>
+                        </tr>
+
+
+                        <tr>
+                        <td>Education</td>
+                        <td>:</td>
+                        <td>{{user.education}}</td>
+                        </tr>
+                        </table>
+
+                        <br/><br/>
+                                {{#allowDelete}}
+                        <form action="/users/{{user.id}}/delete" method="POST">
+                                <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                                Delete this user? <input type="submit" value="Yes"/>
+                        </form>
+                                {{/allowDelete}}
+                                {{^allowDelete}}
+                        <div>
+                        <a href="/users/{{user.id}}/edit">Edit</a> |
+                        <a href="/users/{{user.id}}/delete">Delete</a>
+                        </div>
+                                {{/allowDelete}}
+                                {{/user}}
+                                {{#errorMessage}}
+                        <div class="error">{{errorMessage}}</div>
+                                {{/errorMessage}}
+
+
+         </div>
+
 </div>
-        {{/allowDelete}}
-        {{/user}}
-        {{#errorMessage}}
-<div class="error">{{errorMessage}}</div>
-        {{/errorMessage}}
         {{>footer}}
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
 </body>
 </html>

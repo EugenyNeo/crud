@@ -4,31 +4,30 @@
     <title>Spring Security Example </title>
 
 <style>
-.center{
-        margin-top:100px;
-        }
+        .main{width:350px; height: 250px; margin:0 auto;border: 1px solid grey;margin-top:10%;}
+        .sign{width:90%;height:30px;background-color:orange;border:none;margin-top:100px;}
+        .mrg{border:none;}
+        form{padding:50px 0px 0px 30px;}
+        .in{line-height: 1.5;}
 
-        .centerB{
-        text-decoration: none;
-        font-size: 18px;
-        }
-        .mrg{
-       margin:20px;
-        }
-        .mrgl{
-    margin-left: 30px;
-        }
+
 </style>
 
 </head>
 <body>
-<div align="center">
-    <form action="/login" method="post" class="centerB">
-        <div class="mrg"><label> User Name : <input type="text" name="username" class="mrgl"/> </label></div>
-        <div class="mrg"><label> Password: <input type="password" name="password" class="mrgl"/> </label></div>
-        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-        <div class="mrg"><input type="submit" value="Sign In"/></div>
-    </form>
+<div class="container">
+
+        <div class="main">
+        <form action="/login" method="post" class="login">
+            <div class="in"> User Name : <input type="text" name="username" class="mrg"/> </div>
+            <div class="in"> &nbsp;&nbsp;&nbsp;Password : <input type="password" name="password" class="mrg"/>  </div>
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+            <input type="submit" value="Sign In" class="sign"/>
+        </form>
+
+        </div>
 </div>
+
+
 </body>
 </html>

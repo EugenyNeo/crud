@@ -1,71 +1,86 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8">
 <title>{{#add}}Create new User{{/add}}{{^add}}Edit User{{/add}}</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<style>
+ .container{width:100px; margin:0 auto;}
+ .wrap{padding:50px 0px 0px 100px;}
+</style>
+
 </head>
 <body>
+{{>navbar}}
+        <div class="container">
+                <div class="wrap">
 
-{{#navbar}}{{/navbar}}
+                <h1>{{#add}}Create new User:{{/add}}{{^add}}Edit User:{{/add}}</h1>
+                <a href="/users">Back to User List</a>
+                <br/><br/>
+                <form action="{{#add}}/users/add{{/add}}{{^add}}/users/{{user.id}}/edit{{/add}}" name="user" method="POST">
+                <table border="0">
+                        {{#user.id}}
+                <tr>
+                <td>ID</td>
+                <td>:</td>
+                <td>{{user.id}}</td>
+                </tr>
+                        {{/user.id}}
+                <tr>
 
 
-<h1>{{#add}}Create new User:{{/add}}{{^add}}Edit User:{{/add}}</h1>
-<a href="/users">Back to User List</a>
-<br/><br/>
-<form action="{{#add}}/users/add{{/add}}{{^add}}/users/{{user.id}}/edit{{/add}}" name="user" method="POST">
-<table border="0">
-        {{#user.id}}
-<tr>
-<td>ID</td>
-<td>:</td>
-<td>{{user.id}}</td>
-</tr>
-        {{/user.id}}
-<tr>
+                <td>INN</td>
+                <td>:</td>
+                <td><input type="text" name="personId" value="{{#user.personId}}{{user.personId}}{{/user.personId}}" /></td>
+                </tr>
 
+                <td>First Name</td>
+                <td>:</td>
+                <td><input type="text" name="firstName" value="{{#user.firstName}}{{user.firstName}}{{/user.firstName}}" /></td>
+                </tr>
 
-<td>INN</td>
-<td>:</td>
-<td><input type="text" name="personId" value="{{#user.personId}}{{user.personId}}{{/user.personId}}" /></td>
-</tr>
+                <tr>
+                <td>Last Name</td>
+                <td>:</td>
+                <td><input type="text" name="lastName" value="{{#user.lastName}}{{user.lastName}}{{/user.lastName}}" /></td>
+                </tr>
 
-<td>First Name</td>
-<td>:</td>
-<td><input type="text" name="firstName" value="{{#user.firstName}}{{user.firstName}}{{/user.firstName}}" /></td>
-</tr>
+                <tr>
+                <td>Date Of Birth</td>
+                <td>:</td>
+                <td><input type="text" name="dateOfBirth" value="{{#user.dateOfBirth}}{{user.dateOfBirth}}{{/user.dateOfBirth}}" /></td>
+                </tr>
 
-<tr>
-<td>Last Name</td>
-<td>:</td>
-<td><input type="text" name="lastName" value="{{#user.lastName}}{{user.lastName}}{{/user.lastName}}" /></td>
-</tr>
+                <tr>
+                <td>Family Status</td>
+                <td>:</td>
+                <td><input type="text" name="familyStatus" value="{{#user.familyStatus}}{{user.familyStatus}}{{/user.familyStatus}}" /></td>
+                </tr>
 
-<tr>
-<td>Date Of Birth</td>
-<td>:</td>
-<td><input type="text" name="dateOfBirth" value="{{#user.dateOfBirth}}{{user.dateOfBirth}}{{/user.dateOfBirth}}" /></td>
-</tr>
+                <td>Education</td>
+                <td>:</td>
+                <td><input type="text" name="education" value="{{#user.education}}{{user.education}}{{/user.education}}" /></td>
+                </tr>
 
-<tr>
-<td>Family Status</td>
-<td>:</td>
-<td><input type="text" name="familyStatus" value="{{#user.familyStatus}}{{user.familyStatus}}{{/user.familyStatus}}" /></td>
-</tr>
+                </table>
+                <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                <button type="submit" value="" >{{#add}}Create{{/add}}{{^add}}Update{{/add}}</button>
+                </form>
 
-<td>Education</td>
-<td>:</td>
-<td><input type="text" name="education" value="{{#user.education}}{{user.education}}{{/user.education}}" /></td>
-</tr>
+                <br/>
+                <!-- Check if errorMessage is not null and not empty
+                <div class="error">{{#errorMessage}}{{errorMessage}}{{/errorMessage}}</div>
 
-</table>
-<input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-<button type="submit" value="" >{{#add}}Create{{/add}}{{^add}}Update{{/add}}</button>
-</form>
+                </div>
 
-<br/>
-<!-- Check if errorMessage is not null and not empty
-<div class="error">{{#errorMessage}}{{errorMessage}}{{/errorMessage}}</div>
+        </div>
         {{>footer}}
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
 </body>
 </html>
