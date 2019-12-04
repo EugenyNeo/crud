@@ -74,7 +74,7 @@ public class MainController {
     public String filter( @RequestParam String filter, Map<String, Object> model){
         Iterable<User> users;
         if(filter !=null && !filter.isEmpty()){
-             users = userRepo.findByFirstName(filter);
+             users = userRepo.findByPersonId(filter);
         }else{
             users = userRepo.findAll();
         }

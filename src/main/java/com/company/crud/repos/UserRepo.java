@@ -12,6 +12,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepo extends CrudRepository <User, Long>, PagingAndSortingRepository <User, Long>, JpaSpecificationExecutor<User> {
     List<User> findByFirstName(String firstName);
+    List<User> findByPersonId(String personId);
 
 
 }
